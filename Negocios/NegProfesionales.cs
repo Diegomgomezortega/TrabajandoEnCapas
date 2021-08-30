@@ -13,7 +13,7 @@ namespace Negocios
     public class NegProfesionales
     {
         DatosProfesionales objDatosProfesionales = new DatosProfesionales();
-        public int abmProfesionales(string accion, Profesional objProfesional)
+        public int abmProfesionales(string accion, Docente objProfesional)
         {
             return objDatosProfesionales.abmProfesionales(accion, objProfesional);
         }

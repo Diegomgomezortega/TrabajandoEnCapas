@@ -14,7 +14,7 @@ namespace Datos
     {
         #region Metodo abm Profesional
 
-        public int abmProfesionales(string accion, Profesional objProfesional)
+        public int abmProfesionales(string accion, Docente objProfesional)
         {
             int resultado = 1;
             string orden = string.Empty;

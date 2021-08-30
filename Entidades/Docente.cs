@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Profesional
+    public class Docente: Persona
     {
         #region atributos
         private int codProf;
         private string nombre;
         #endregion
         #region Constructor
-        public Profesional()
+        public Docente()
         {
             codProf = 0;
             nombre = string.Empty;
@@ -25,11 +25,8 @@ namespace Entidades
             get { return codProf; }
             set { codProf = value; }
         }
-        public string Nombre
-        {
-            get { return nombre; }
-            set { nombre = value; }
-        }
+        //public string Nombre{            get { return nombre; }            set { nombre = value; }
+        //}
         #endregion
 
     }
