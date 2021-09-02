@@ -9,24 +9,38 @@ namespace Entidades
     public class Docente: Persona
     {
         #region atributos
-        private int codProf;
-        private string nombre;
+        private string materia;
+        private string codProf;
         #endregion
-        #region Constructor
-        public Docente()
+        #region Constructores
+        public Docente()//Vacio, no trae ningun argumento/parametro
         {
-            codProf = 0;
-            nombre = string.Empty;
         }
+        public Docente(string Nom,long Du,DateTime FecNac,char Sex)//No inicializa materia ni codProf
+        {
+
+        }
+        public Docente(string Nom, long Du, DateTime FecNac, char Sex, string Mat, string Cod) : base(Nom, Du, FecNac, Sex)
+        {
+            materia = Mat;
+            codProf = Cod;
+
+        }//Inicializa materia=mat y codProf=Cod
         #endregion
         #region propiedades/encapsulamiento
-        public int CodProf
+        public string CodProf
         {
             get { return codProf; }
             set { codProf = value; }
         }
-        //public string Nombre{            get { return nombre; }            set { nombre = value; }
-        //}
+        public string Materia
+        {
+            get { return materia; }
+            set { materia = value; }
+        }
+
+       
+
         #endregion
 
     }

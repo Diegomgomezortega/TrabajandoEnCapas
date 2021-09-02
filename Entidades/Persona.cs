@@ -8,10 +8,12 @@ namespace Entidades
 {
     public abstract class Persona
     {
+        #region Atributos
         private string nombre;
         private long dni;
         private DateTime fechNac;
         private char sexo;
+        #endregion
         #region Propiedades
         public string Nombre
         {
@@ -37,12 +39,12 @@ namespace Entidades
         #region Constructores
         public Persona()//por defecto
         { }
-        public Persona(string Nom, long Du, DateTime FecNac, char Sex)
+        public Persona(string Nom, long Dni, DateTime FecNac, char Sex)//Contructor hecho por el programador
         {
-            Nombre = Nom;
-            Dni = Du;
-            FechNac = FecNac;
-            Sexo = Sex;
+            nombre = Nom;
+            dni = Dni;
+            fechNac = FecNac;
+            sexo = Sex;
         }
         #endregion
         #region Metodos
