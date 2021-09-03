@@ -12,14 +12,14 @@ namespace Negocios
 {
     public class NegProfesionales
     {
-        DatosProfesionales objDatosProfesionales = new DatosProfesionales();
-        public int abmProfesionales(string accion, Docente objProfesional)
+        DatosDocentes objDatosDocente = new DatosDocentes();
+        public int abmDocentes(string accion, Docente objDocente)
         {
-            return objDatosProfesionales.abmProfesionales(accion, objProfesional);
+            return objDatosDocente.abmDocentes(accion, objDocente);
         }
-        public DataSet listadoProfesionales(string cual)
+        public DataSet listadoDocentes(string cual)
         {
-            return objDatosProfesionales.listadoProfesionales(cual);
+            return objDatosDocente.listadoDocentes(cual);
         }
     }
 }

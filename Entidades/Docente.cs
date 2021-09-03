@@ -10,7 +10,7 @@ namespace Entidades
     {
         #region atributos
         private string materia;
-        private string codProf;
+        private int codProf;
         #endregion
         #region Constructores
         public Docente()//Vacio, no trae ningun argumento/parametro
@@ -20,7 +20,7 @@ namespace Entidades
         {
 
         }
-        public Docente(string Nom, long Du, DateTime FecNac, char Sex, string Mat, string Cod) : base(Nom, Du, FecNac, Sex)
+        public Docente(string Nom, long Du, DateTime FecNac, char Sex, string Mat, int Cod) : base(Nom, Du, FecNac, Sex)
         {
             materia = Mat;
             codProf = Cod;
@@ -28,7 +28,7 @@ namespace Entidades
         }//Inicializa materia=mat y codProf=Cod
         #endregion
         #region propiedades/encapsulamiento
-        public string CodProf
+        public int CodProf
         {
             get { return codProf; }
             set { codProf = value; }

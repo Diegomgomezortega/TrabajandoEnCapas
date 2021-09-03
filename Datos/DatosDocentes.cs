@@ -10,20 +10,20 @@ using Entidades;
 
 namespace Datos
 {
-    public class DatosProfesionales: DatosConexionBD
+    public class DatosDocentes: DatosConexionBD
     {
         #region Metodo abm Profesional
 
-        public int abmProfesionales(string accion, Docente objProfesional)
+        public int abmDocentes(string accion, Docente objDocente)
         {
             int resultado = 1;
             string orden = string.Empty;
             if (accion == "Alta")
-                orden = "insert into Profesionales values (" + objProfesional.CodProf +
-                ",'" + objProfesional.Nombre + "');";
+                orden = "insert into Docentes values (" + objDocente.CodProf +",'" + objDocente.Nombre + "');";
             if (accion == "Modificar")
-                orden = "update Profesionales set Nombre=" + objProfesional.Nombre + "where CodProf = " + objProfesional.CodProf + ";";
-           
+                orden = "update Docentes set Nombre=" + objDocente.Nombre + " where CodProf = " + objDocente.CodProf + ";";
+            if(accion=="Borrar")
+                orden= "delete Docentes set Nombre=" + objDocente.Nombre + " where CodProf = " + objDocente.CodProf + ";";
             SqlCommand cmd = new SqlCommand(orden, conexion);
             {
                 try
@@ -33,7 +33,7 @@ namespace Datos
                 }
                 catch (Exception e)
                 {
-                    throw new Exception("Error al tratar de guardar,borrar o modificar de Profesionales",e);
+                    throw new Exception("Error al tratar de guardar,borrar o modificar de Docentes",e);
                 }
                 finally
                 {
@@ -44,13 +44,13 @@ namespace Datos
             }
         }
         #endregion
-        public DataSet listadoProfesionales(string cual)
+        public DataSet listadoDocentes(string cual)//Este método listadoDocentes devuelve un DataSet ds con los registros solicitados,recibe un string que indica el código que deseo buscar, o si sesolicitan “Todos”
         {
             string orden = string.Empty;
             if (cual != "Todos")
-                orden = "select * from Profesionales where CodProf = " + int.Parse(cual) + ";";
+                orden = "select * from Docentes where CodProf = " + int.Parse(cual) + ";";
             else
-                orden = "select * from Profesionales;";
+                orden = "select * from Docentes;";
             SqlCommand cmd = new SqlCommand(orden, conexion);
             DataSet ds = new DataSet();
             SqlDataAdapter da = new SqlDataAdapter();
@@ -63,7 +63,7 @@ namespace Datos
             }
             catch (Exception e)
             {
-                throw new Exception("Error al listar profesionales", e);
+                throw new Exception("Error al listar Docentes", e);
             }
             finally
             {
