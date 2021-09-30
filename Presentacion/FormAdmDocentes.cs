@@ -17,11 +17,17 @@ namespace Presentacion
         public FormAdmDocentes()
         {
             InitializeComponent();
-            dgvpersonas.ColumnCount = 2;
+            dgvpersonas.ColumnCount = 5;
             dgvpersonas.Columns[0].HeaderText = "Código";
             dgvpersonas.Columns[1].HeaderText = "Nombre";
+            dgvpersonas.Columns[2].HeaderText = "Materia";
+            dgvpersonas.Columns[3].HeaderText = "Nacimiento";
+            dgvpersonas.Columns[4].HeaderText = "Genero";
             dgvpersonas.Columns[0].Width = 60;
             dgvpersonas.Columns[1].Width = 200;
+            dgvpersonas.Columns[2].Width = 200;
+            dgvpersonas.Columns[3].Width = 100;
+            dgvpersonas.Columns[4].Width = 60;
             LlenarDGV();
         }
         public Docente objEntDoc = new Docente();//Instancia de Docente, es un objeto
@@ -36,15 +42,19 @@ namespace Presentacion
             {
                 foreach (DataRow dr in ds.Tables[0].Rows)//Lo que muestra esta en dr[0].ToString(), dr[1].ToString(),y asi sucesivamente
                 {
-                    dgvpersonas.Rows.Add(dr[0].ToString(), dr[1]);
+                    dgvpersonas.Rows.Add(dr[0].ToString(), dr[1], dr[2], dr[3], dr[4]);
                 }
             }
             else lblInformacion.Text = "No hay personas cargadas en el sistema";
         }
-        private void Txtbox_a_obj()//metodo para tomar los datos del formulario y colocar los atributos a la instacia de la clase, Toma los datos de ls txbox y utiliza las propiedades de la clase docente
+        private void Txtbox_a_obj()//metodo para tomar los datos del formulario/text box y colocar los atributos a la instacia de la clase, Toma los datos de ls txbox y utiliza las propiedades de la clase docente
         {
             objEntDoc.CodProf = Convert.ToInt32(txtCodigo.Text);
             objEntDoc.Nombre = txtNombre.Text;
+            objEntDoc.Materia = txtMateria.Text;
+            objEntDoc.FechNac = dtpFecNac.Value;
+            objEntDoc.Sexo = txtGenero.Text;
+            
         }
 
         private void btnGrabar_Click(object sender, EventArgs e)
@@ -85,6 +95,8 @@ namespace Presentacion
         {
             txtCodigo.Text = ds.Tables[0].Rows[0]["CodProf"].ToString();
             txtNombre.Text = ds.Tables[0].Rows[0]["Nombre"].ToString();
+            txtMateria.Text = ds.Tables[0].Rows[0]["Materia"].ToString();
+            txtGenero.Text= ds.Tables[0].Rows[0]["Genero"].ToString();
             txtCodigo.Enabled = false;
         }
 
@@ -93,6 +105,8 @@ namespace Presentacion
             int nResultado = -1;
             Txtbox_a_obj();
             nResultado = objNegDoc.abmDocentes("Modificar", objEntDoc);//Invoco a la capa de negocios
+           
+
             if (nResultado != -1)
             {
                 lblInformacion.Text = "Los datos fueron modificados con éxito";

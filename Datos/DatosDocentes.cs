@@ -16,13 +16,14 @@ namespace Datos
 
         public int abmDocentes(string accion, Docente objDocente)
         {
-            int resultado = 1;
+            int resultado = -1;
             string orden = string.Empty;
             if (accion == "Alta")
-                orden = "insert into Docentes values (" + objDocente.CodProf +",'" + objDocente.Nombre + "');";
+                orden = "insert into Docentes values (" + objDocente.CodProf + ",'" + objDocente.Nombre + "','" + objDocente.Materia + "','" + objDocente.Sexo + "','" + objDocente.FechNac + "')";
             if (accion == "Modificar")
-                orden = "update Docentes set Nombre=" + objDocente.Nombre + " where CodProf = " + objDocente.CodProf + ";";
-            if(accion=="Borrar")
+                orden = "update Docentes set Nombre='"+ objDocente.Nombre + "',Materia='" + objDocente.Materia + "',Genero='" + objDocente.Sexo + "',FechaNacimiento='" + objDocente.FechNac + "' where CodProf=" + objDocente.CodProf + " ";
+            //UPDATE nombre_tabla SET columna1 = valor1, columna2 = valor2 WHERE columna3 = valor3
+            if (accion=="Borrar")
                 orden= "delete Docentes set Nombre=" + objDocente.Nombre + " where CodProf = " + objDocente.CodProf + ";";
             SqlCommand cmd = new SqlCommand(orden, conexion);
             {

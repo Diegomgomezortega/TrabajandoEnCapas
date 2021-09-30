@@ -29,15 +29,22 @@ namespace Entidades
         {
 
         }
-        public Alumno(string Nom, long Du, DateTime FecNac, char Sex)//No inicializa carrera ni legajo
+        public Alumno(string carr, long leg)//Inicializa solo carrera y legajo
         {
+            legajo = leg;
+            carrera = carr;
+        }
+        public Alumno(string Nom, long Du, DateTime FecNac, string Sex, string carr, long leg) : base(Nom, Du, FecNac, Sex)
+        {
+            Nombre = Nom;
+            Dni = Du;
+            FechNac = FecNac;
+            Sexo = Sex;
+            legajo = leg;
+            carrera=carr;
 
-        }
-        public Alumno(string Nom, long Du, DateTime FecNac, char Sex, string Carr, long Leg) : base(Nom, Du, FecNac, Sex)//Constructor hecho por el programador
-        {
-            Carrera = Carr;//Trae en el constructor el argumento string Carr, y Carrera toma su valor
-            Legajo = Leg;////Trae en el constructor el argumento string Leg, y Legajo toma su valor
-        }
+
+        }//Inicializa todos los atributos, y los de la base Personas tambien
         #endregion
     }
 }

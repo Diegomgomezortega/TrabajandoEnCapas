@@ -12,7 +12,7 @@ namespace Entidades
         private string nombre;
         private long dni;
         private DateTime fechNac;
-        private char sexo;
+        private string sexo;
         #endregion
         #region Propiedades
         public string Nombre
@@ -30,7 +30,7 @@ namespace Entidades
             get { return fechNac; }
             set { fechNac = value; }
         }
-        public Char Sexo
+        public String Sexo
         {
             get { return sexo; }
             set { sexo = value; }
@@ -39,7 +39,7 @@ namespace Entidades
         #region Constructores
         public Persona()//por defecto
         { }
-        public Persona(string Nom, long Dni, DateTime FecNac, char Sex)//Contructor hecho por el programador
+        public Persona(string Nom, long Dni, DateTime FecNac, string Sex)//Contructor hecho por el programador
         {
             nombre = Nom;
             dni = Dni;

@@ -16,16 +16,22 @@ namespace Entidades
         public Docente()//Vacio, no trae ningun argumento/parametro
         {
         }
-        public Docente(string Nom,long Du,DateTime FecNac,char Sex)//No inicializa materia ni codProf
+        public Docente( string mat, int cd)//No inicializa materia ni codProf
         {
-
+            mat = materia;
+            cd = codProf;
         }
-        public Docente(string Nom, long Du, DateTime FecNac, char Sex, string Mat, int Cod) : base(Nom, Du, FecNac, Sex)
+        public Docente(string Nom, long Du, DateTime FecNac, string Sex, string Mat, int Cod) : base(Nom, Du, FecNac, Sex)
         {
+            Nombre = Nom;
+            Dni= Du;
+            FechNac = FecNac;
+            Sexo = Sex;
             materia = Mat;
             codProf = Cod;
 
-        }//Inicializa materia=mat y codProf=Cod
+
+        }//Inicializa todos los atributos, y los de la base Personas tambien
         #endregion
         #region propiedades/encapsulamiento
         public int CodProf
