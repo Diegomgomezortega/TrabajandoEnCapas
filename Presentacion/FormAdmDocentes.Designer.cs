@@ -29,15 +29,14 @@ namespace Presentacion
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.lblNombre = new System.Windows.Forms.Label();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnModficar = new System.Windows.Forms.Button();
             this.dgvpersonas = new System.Windows.Forms.DataGridView();
-            this.lblGestion = new System.Windows.Forms.Label();
             this.lblMateria = new System.Windows.Forms.Label();
             this.lblFecNac = new System.Windows.Forms.Label();
             this.lblGenero = new System.Windows.Forms.Label();
@@ -58,6 +57,7 @@ namespace Presentacion
             this.btnCancelar = new System.Windows.Forms.Button();
             this.lblInformacion = new System.Windows.Forms.Label();
             this.btnVolver = new System.Windows.Forms.Button();
+            this.btnInicio = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvpersonas)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -81,7 +81,7 @@ namespace Presentacion
             // 
             // btnNuevo
             // 
-            this.btnNuevo.Location = new System.Drawing.Point(372, 81);
+            this.btnNuevo.Location = new System.Drawing.Point(241, 103);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(131, 26);
             this.btnNuevo.TabIndex = 5;
@@ -91,7 +91,7 @@ namespace Presentacion
             // 
             // btnModficar
             // 
-            this.btnModficar.Location = new System.Drawing.Point(645, 81);
+            this.btnModficar.Location = new System.Drawing.Point(514, 103);
             this.btnModficar.Name = "btnModficar";
             this.btnModficar.Size = new System.Drawing.Size(131, 26);
             this.btnModficar.TabIndex = 6;
@@ -109,43 +109,33 @@ namespace Presentacion
             this.dgvpersonas.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvpersonas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvpersonas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvpersonas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvpersonas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvpersonas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvpersonas.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvpersonas.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvpersonas.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dgvpersonas.Location = new System.Drawing.Point(22, 387);
             this.dgvpersonas.Name = "dgvpersonas";
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.dgvpersonas.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.dgvpersonas.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvpersonas.RowTemplate.Height = 25;
             this.dgvpersonas.Size = new System.Drawing.Size(1034, 150);
             this.dgvpersonas.TabIndex = 6;
             this.dgvpersonas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvpersonas_CellClick);
-            // 
-            // lblGestion
-            // 
-            this.lblGestion.AutoSize = true;
-            this.lblGestion.Font = new System.Drawing.Font("Segoe UI", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point);
-            this.lblGestion.Location = new System.Drawing.Point(22, 75);
-            this.lblGestion.Name = "lblGestion";
-            this.lblGestion.Size = new System.Drawing.Size(267, 32);
-            this.lblGestion.TabIndex = 8;
-            this.lblGestion.Text = "Gestión Planilla Instituto";
             // 
             // lblMateria
             // 
@@ -184,7 +174,7 @@ namespace Presentacion
             // 
             // btnBorrar
             // 
-            this.btnBorrar.Location = new System.Drawing.Point(782, 81);
+            this.btnBorrar.Location = new System.Drawing.Point(651, 103);
             this.btnBorrar.Name = "btnBorrar";
             this.btnBorrar.Size = new System.Drawing.Size(131, 26);
             this.btnBorrar.TabIndex = 16;
@@ -360,7 +350,7 @@ namespace Presentacion
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(509, 81);
+            this.btnVolver.Location = new System.Drawing.Point(378, 103);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(131, 26);
             this.btnVolver.TabIndex = 26;
@@ -369,15 +359,25 @@ namespace Presentacion
             this.btnVolver.Visible = false;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
+            // btnInicio
+            // 
+            this.btnInicio.Location = new System.Drawing.Point(22, 12);
+            this.btnInicio.Name = "btnInicio";
+            this.btnInicio.Size = new System.Drawing.Size(131, 26);
+            this.btnInicio.TabIndex = 27;
+            this.btnInicio.Text = "INICIO";
+            this.btnInicio.UseVisualStyleBackColor = true;
+            this.btnInicio.Click += new System.EventHandler(this.btnInicio_Click);
+            // 
             // FormAdmDocentes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1110, 633);
+            this.Controls.Add(this.btnInicio);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnBorrar);
-            this.Controls.Add(this.lblGestion);
             this.Controls.Add(this.dgvpersonas);
             this.Controls.Add(this.btnModficar);
             this.Controls.Add(this.btnNuevo);
@@ -387,7 +387,6 @@ namespace Presentacion
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -397,7 +396,6 @@ namespace Presentacion
         private System.Windows.Forms.Button btnNuevo;
         private System.Windows.Forms.Button btnModficar;
         private System.Windows.Forms.DataGridView dgvpersonas;
-        private System.Windows.Forms.Label lblGestion;
         private System.Windows.Forms.Label lblMateria;
         private System.Windows.Forms.Label lblFecNac;
         private System.Windows.Forms.Label lblGenero;
@@ -418,5 +416,6 @@ namespace Presentacion
         private System.Windows.Forms.Label lblAño;
         private System.Windows.Forms.Label lblInformacion;
         private System.Windows.Forms.Button btnVolver;
+        private System.Windows.Forms.Button btnInicio;
     }
 }

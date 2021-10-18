@@ -12,7 +12,7 @@ namespace Datos
 {
     public class DatosDocentes: DatosConexionBD
     {
-        #region Metodo abm Profesional
+        #region Metodo abm Docente
 
         public int abmDocentes(string accion, Docente objDocente)
         {
@@ -46,6 +46,7 @@ namespace Datos
             }
         }
         #endregion
+       
         public DataSet listadoDocentes(string cual)//Este método listadoDocentes devuelve un DataSet ds con los registros solicitados,recibe un string que indica el código que deseo buscar, o si sesolicitan “Todos”
         {
             string orden = string.Empty;
@@ -76,5 +77,6 @@ namespace Datos
         }
 
     }
+    
 
 }

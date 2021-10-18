@@ -21,5 +21,18 @@ namespace Negocios
         {
             return objDatosDocente.listadoDocentes(cual);
         }
+
+        DatosAlumnos objDatosAlumnos = new DatosAlumnos();
+        public int abmAlumnos(string accion, Alumno objAlumno)
+        {
+            return objDatosAlumnos.abmAlumno(accion, objAlumno);
+        }
+        public DataSet listadoAlumnos(string cual)
+        {
+            return objDatosAlumnos.listadoAlumnos(cual);
+        }
+
+
+
     }
 }
