@@ -19,12 +19,13 @@ namespace Datos
             int resultado = -1;
             string orden = string.Empty;
             if (accion == "Alta")
-                orden = "insert into Docentes values (" + objDocente.CodProf + ",'" + objDocente.Nombre + "','" + objDocente.Materia + "','" + objDocente.Sexo + "','" + objDocente.FechNac + "')";
+                orden = "insert into Docentes1 values (" + objDocente.Dni + ",'" + objDocente.Nombre + "','" + objDocente.Apellido + "','" + objDocente.Sexo + "','" + objDocente.FechNac + "','" + objDocente.Materia + "')";
             if (accion == "Modificar")
-                orden = "update Docentes set Nombre='"+ objDocente.Nombre + "',Materia='" + objDocente.Materia + "',Genero='" + objDocente.Sexo + "',FechaNacimiento='" + objDocente.FechNac + "' where CodProf=" + objDocente.CodProf + " ";
+                orden = "update Docentes1 set DNI=" + objDocente.Dni + " ,Nombre ='"+ objDocente.Nombre + "',Materia='" + objDocente.Materia + "',Genero='" + objDocente.Sexo + "',FechaNacimiento='" + objDocente.FechNac + "' where CodProf=" + objDocente.CodProf + " ";
             //UPDATE nombre_tabla SET columna1 = valor1, columna2 = valor2 WHERE columna3 = valor3
-            if (accion=="Borrar")
-                orden= "delete Docentes set Nombre=" + objDocente.Nombre + " where CodProf = " + objDocente.CodProf + ";";
+            if (accion == "Borrar")
+                orden = "delete from Docentes1  where CodProf=" + objDocente.CodProf + "";
+            //DELETE FROM nombre_tabla WHERE nombre_columna = valor
             SqlCommand cmd = new SqlCommand(orden, conexion);
             {
                 try
@@ -49,9 +50,9 @@ namespace Datos
         {
             string orden = string.Empty;
             if (cual != "Todos")
-                orden = "select * from Docentes where CodProf = " + int.Parse(cual) + ";";
+                orden = "select * from Docentes1 where CodProf = " + int.Parse(cual) + ";";
             else
-                orden = "select * from Docentes;";
+                orden = "select * from Docentes1;";
             SqlCommand cmd = new SqlCommand(orden, conexion);
             DataSet ds = new DataSet();
             SqlDataAdapter da = new SqlDataAdapter();

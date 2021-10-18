@@ -21,7 +21,7 @@ namespace Entidades
             mat = materia;
             cd = codProf;
         }
-        public Docente(string Nom, long Du, DateTime FecNac, string Sex, string Mat, int Cod) : base(Nom, Du, FecNac, Sex)
+        public Docente(string Nom, int Du, DateTime FecNac, char Sex, string Mat, int Cod) : base(Nom, Du, FecNac, Sex)
         {
             Nombre = Nom;
             Dni= Du;

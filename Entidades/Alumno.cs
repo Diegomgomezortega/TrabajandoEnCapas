@@ -34,7 +34,7 @@ namespace Entidades
             legajo = leg;
             carrera = carr;
         }
-        public Alumno(string Nom, long Du, DateTime FecNac, string Sex, string carr, long leg) : base(Nom, Du, FecNac, Sex)
+        public Alumno(string Nom, int Du, DateTime FecNac, char Sex, string carr, long leg) : base(Nom, Du, FecNac, Sex)
         {
             Nombre = Nom;
             Dni = Du;

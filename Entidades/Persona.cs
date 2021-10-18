@@ -9,18 +9,25 @@ namespace Entidades
     public abstract class Persona
     {
         #region Atributos
+        private string apellido;
         private string nombre;
-        private long dni;
+        private int dni;
         private DateTime fechNac;
-        private string sexo;
+        private char sexo;
         #endregion
         #region Propiedades
+
+        public string Apellido 
+        {
+            get { return apellido; }
+            set { apellido = value; }
+        }
         public string Nombre
         {
             get { return nombre; }
             set { nombre = value; }
         }
-        public long Dni
+        public int Dni
         {
             get { return dni; }
             set { dni = value; }
@@ -30,7 +37,7 @@ namespace Entidades
             get { return fechNac; }
             set { fechNac = value; }
         }
-        public String Sexo
+        public char Sexo
         {
             get { return sexo; }
             set { sexo = value; }
@@ -39,7 +46,7 @@ namespace Entidades
         #region Constructores
         public Persona()//por defecto
         { }
-        public Persona(string Nom, long Dni, DateTime FecNac, string Sex)//Contructor hecho por el programador
+        public Persona(string Nom, int Dni, DateTime FecNac, char Sex)//Contructor hecho por el programador
         {
             nombre = Nom;
             dni = Dni;
