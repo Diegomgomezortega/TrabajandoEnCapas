@@ -37,7 +37,6 @@ namespace Presentacion
             this.lblCarrera = new System.Windows.Forms.Label();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.lblInformacion = new System.Windows.Forms.Label();
             this.rdX = new System.Windows.Forms.RadioButton();
             this.rdFemenino = new System.Windows.Forms.RadioButton();
             this.rbMasculino = new System.Windows.Forms.RadioButton();
@@ -50,6 +49,7 @@ namespace Presentacion
             this.lblFecNac = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
+            this.lblInformacion = new System.Windows.Forms.Label();
             this.btnVolver = new System.Windows.Forms.Button();
             this.btnBorrar = new System.Windows.Forms.Button();
             this.btnModficar = new System.Windows.Forms.Button();
@@ -128,19 +128,12 @@ namespace Presentacion
             this.btnCancelar.TabIndex = 28;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
-            // 
-            // lblInformacion
-            // 
-            this.lblInformacion.AutoSize = true;
-            this.lblInformacion.Location = new System.Drawing.Point(475, 33);
-            this.lblInformacion.Name = "lblInformacion";
-            this.lblInformacion.Size = new System.Drawing.Size(72, 15);
-            this.lblInformacion.TabIndex = 7;
-            this.lblInformacion.Text = "Información";
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click_1);
             // 
             // rdX
             // 
             this.rdX.AutoSize = true;
+            this.rdX.Checked = true;
             this.rdX.Location = new System.Drawing.Point(264, 86);
             this.rdX.Name = "rdX";
             this.rdX.Size = new System.Drawing.Size(32, 19);
@@ -156,7 +149,6 @@ namespace Presentacion
             this.rdFemenino.Name = "rdFemenino";
             this.rdFemenino.Size = new System.Drawing.Size(78, 19);
             this.rdFemenino.TabIndex = 23;
-            this.rdFemenino.TabStop = true;
             this.rdFemenino.Text = "Femenino";
             this.rdFemenino.UseVisualStyleBackColor = true;
             // 
@@ -167,7 +159,6 @@ namespace Presentacion
             this.rbMasculino.Name = "rbMasculino";
             this.rbMasculino.Size = new System.Drawing.Size(80, 19);
             this.rbMasculino.TabIndex = 22;
-            this.rbMasculino.TabStop = true;
             this.rbMasculino.Text = "Masculino";
             this.rbMasculino.UseVisualStyleBackColor = true;
             // 
@@ -209,7 +200,7 @@ namespace Presentacion
             this.dtpFecNac.Name = "dtpFecNac";
             this.dtpFecNac.Size = new System.Drawing.Size(229, 23);
             this.dtpFecNac.TabIndex = 21;
-            this.dtpFecNac.Value = new System.DateTime(2021, 9, 30, 0, 0, 0, 0);
+            this.dtpFecNac.Value = new System.DateTime(2021, 10, 22, 0, 0, 0, 0);
             // 
             // lblGenero
             // 
@@ -245,6 +236,15 @@ namespace Presentacion
             this.txtNombre.Size = new System.Drawing.Size(170, 23);
             this.txtNombre.TabIndex = 19;
             // 
+            // lblInformacion
+            // 
+            this.lblInformacion.AutoSize = true;
+            this.lblInformacion.Location = new System.Drawing.Point(475, 33);
+            this.lblInformacion.Name = "lblInformacion";
+            this.lblInformacion.Size = new System.Drawing.Size(72, 15);
+            this.lblInformacion.TabIndex = 7;
+            this.lblInformacion.Text = "Información";
+            // 
             // btnVolver
             // 
             this.btnVolver.Location = new System.Drawing.Point(375, 103);
@@ -263,6 +263,7 @@ namespace Presentacion
             this.btnBorrar.TabIndex = 29;
             this.btnBorrar.Text = "Borrar";
             this.btnBorrar.UseVisualStyleBackColor = true;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click_1);
             // 
             // btnModficar
             // 
@@ -272,6 +273,7 @@ namespace Presentacion
             this.btnModficar.TabIndex = 28;
             this.btnModficar.Text = "Modificar";
             this.btnModficar.UseVisualStyleBackColor = true;
+            this.btnModficar.Click += new System.EventHandler(this.btnModficar_Click_1);
             // 
             // btnNuevo
             // 
@@ -319,6 +321,7 @@ namespace Presentacion
             this.dgvpersonas.RowTemplate.Height = 25;
             this.dgvpersonas.Size = new System.Drawing.Size(1034, 150);
             this.dgvpersonas.TabIndex = 32;
+            this.dgvpersonas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvpersonas_CellClick_1);
             // 
             // btnInicio
             // 

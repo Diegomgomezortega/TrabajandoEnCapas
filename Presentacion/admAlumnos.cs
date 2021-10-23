@@ -49,7 +49,7 @@ namespace Presentacion
             {
                 foreach (DataRow dr in ds.Tables[0].Rows)//Lo que muestra esta en dr[0].ToString(), dr[1].ToString(),y asi sucesivamente
                 {
-                    dgvpersonas.Rows.Add(dr[0].ToString(), dr[1], dr[2], dr[3], dr[4], dr[5], dr[6]);
+                    dgvpersonas.Rows.Add(dr[0].ToString(), dr[1], dr[2], dr[3], dr[4], Convert.ToDateTime(dr[5]).ToShortDateString(), dr[6]);
                 }
             }
             else lblInformacion.Text = "No hay personas cargadas en el sistema";
@@ -73,23 +73,15 @@ namespace Presentacion
                 genero = 'x';
             }
             entAlum.Sexo = genero;
-            entAlum.FechNac = dtpFecNac.Value;
-            //objEntDoc.CodProf = Convert.ToInt32(txtCodigo.Text);
+            DateTime dt = this.dtpFecNac.Value.Date;
+
+            entAlum.FechNac = dt;
+                //objEntDoc.CodProf = Convert.ToInt32(txtCodigo.Text);
             entAlum.Carrera = cbxCarrera.SelectedItem.ToString();
 
 
         }
-        //private void btnGrabar_Click(object sender, EventArgs e)
-        //{
-        //    confirmar = true;
-        //    groupBox1.Enabled = true;
-        //    groupBox1.Visible = true;
-        //    btnModficar.Visible = false;
-        //    btnBorrar.Visible = false;
-
-
-
-        //}
+        
         private void Limpiar()
         {
             btnVolver.Visible = false;
@@ -100,121 +92,16 @@ namespace Presentacion
             cbxCarrera.Text = "Elija una carrera";
             
         }
-        private void dgvpersonas_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-            btnBorrar.Visible = true;
-            btnVolver.Visible = true;
-
-            btnModficar.Visible = true;
-            groupBox1.Visible = true;
-            groupBox1.Enabled = false;
-
-            DataSet ds = new DataSet();
-            entAlum.Legajo = Convert.ToInt32(dgvpersonas.CurrentRow.Cells[5].Value);
-            //txtCodigo.Enabled = false;
-            ds = objNegAlum.listadoAlumnos (entAlum.Legajo.ToString());
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                Ds_a_TxtBox(ds);
-                btnNuevo.Visible = false;
-                lblInformacion.Text = string.Empty;
-            }
-        }//Para modificar los datos haciendo click en la celda del dgv
+        
         private void Ds_a_TxtBox(DataSet ds)
         {
             txtDNI.Text = ds.Tables[0].Rows[0]["DNI"].ToString();
             txtNombre.Text = ds.Tables[0].Rows[0]["NOMBRE"].ToString();
             txtApellido.Text = ds.Tables[0].Rows[0]["APELLIDO"].ToString();
             cbxCarrera.SelectedItem = ds.Tables[0].Rows[0]["CARRERA"].ToString();
-
+            
         }
-        private void btnModficar_Click(object sender, EventArgs e)
-        {
-            confirmar = false;
-            groupBox1.Enabled = true;
-            btnModficar.Visible = false;
-            btnBorrar.Visible = false;
-
-        }
-        private void btnBorrar_Click(object sender, EventArgs e)
-        {
-            int nResultado = -1;
-            Txtbox_a_obj();
-            nResultado = objNegAlum.abmAlumnos("Borrar", entAlum);//Invoco a la capa de negocios
-
-
-            if (nResultado != -1)
-            {
-                lblInformacion.Text = "Los datos fueron modificados con éxito";
-                Limpiar();
-                LlenarDGV();
-                //txtCodigo.Enabled = true;
-            }
-            else
-            {
-                lblInformacion.Text = ("Se produjo un error al intentar modificar los datos");
-            }
-
-        }
-
-        private void btnConfirmar_Click(object sender, EventArgs e)
-        {
-            if (confirmar == true)
-            {
-                int ngrabados = -1;//la utilizo para detectar si fue grabado exitosamente o no
-                Txtbox_a_obj();
-                ngrabados = objNegAlum.abmAlumnos("Alta", entAlum);//
-                if (ngrabados == -1)
-                {
-                    lblInformacion.Text = "No se pudo grabar los datos en el sistema";
-                }
-                else
-                {
-                    lblInformacion.Text = "Se grabaron los datos con éxito";
-                    LlenarDGV();
-                    Limpiar();//Limpia los textBox
-                    groupBox1.Visible = false;
-                    btnNuevo.Visible = true;
-                    btnBorrar.Visible = false;
-
-                }
-
-            }
-
-            if (confirmar == false)
-            {
-                //groupBox1.Enabled = true;
-                //btnBorrar.Visible = false;
-                int nResultado = -1;
-                Txtbox_a_obj();
-                nResultado = objNegAlum.abmAlumnos("Modificar", entAlum);//Invoco a la capa de negocios
-
-
-                if (nResultado != -1)
-                {
-                    lblInformacion.Text = "Los datos fueron modificados con éxito";
-                    Limpiar();
-                    LlenarDGV();
-                    //txtCodigo.Enabled = true;
-                }
-                else
-                {
-                    lblInformacion.Text = ("Se produjo un error al intentar modificar los datos");
-                }
-            }
-
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            Limpiar();
-            groupBox1.Visible = false;
-            btnNuevo.Visible = true;
-        }
-
         
-
         private void btnVolver_Click(object sender, EventArgs e)
         {
             Limpiar();
@@ -288,6 +175,66 @@ namespace Presentacion
                 }
             }
 
+        }
+
+        private void dgvpersonas_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+            btnBorrar.Visible = true;
+            btnVolver.Visible = true;
+
+            btnModficar.Visible = true;
+            groupBox1.Visible = true;
+            groupBox1.Enabled = false;
+
+            DataSet ds = new DataSet();
+            entAlum.Legajo = Convert.ToInt32(dgvpersonas.CurrentRow.Cells[6].Value);
+            //txtCodigo.Enabled = false;
+            ds = objNegAlum.listadoAlumnos(entAlum.Legajo.ToString());
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                Ds_a_TxtBox(ds);
+                btnNuevo.Visible = false;
+                lblInformacion.Text = string.Empty;
+            }
+        }//Para modificar los datos haciendo click en la celda del dgv
+
+        private void btnCancelar_Click_1(object sender, EventArgs e)
+        {
+
+            Limpiar();
+            groupBox1.Visible = false;
+            btnNuevo.Visible = true;
+        }
+
+        private void btnModficar_Click_1(object sender, EventArgs e)
+        {
+
+            confirmar = false;
+            groupBox1.Enabled = true;
+            btnModficar.Visible = false;
+            btnBorrar.Visible = false;
+
+        }
+
+        private void btnBorrar_Click_1(object sender, EventArgs e)
+        {
+            int nResultado = -1;
+            Txtbox_a_obj();
+            nResultado = objNegAlum.abmAlumnos("Borrar", entAlum);//Invoco a la capa de negocios
+
+
+            if (nResultado != -1)
+            {
+                lblInformacion.Text = "Los datos fueron modificados con éxito";
+                Limpiar();
+                LlenarDGV();
+                //txtCodigo.Enabled = true;
+            }
+            else
+            {
+                lblInformacion.Text = ("Se produjo un error al intentar modificar los datos");
+            }
         }
     }
     }
