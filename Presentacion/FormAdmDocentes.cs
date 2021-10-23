@@ -65,7 +65,7 @@ namespace Presentacion
             {
                 foreach (DataRow dr in ds.Tables[0].Rows)//Lo que muestra esta en dr[0].ToString(), dr[1].ToString(),y asi sucesivamente
                 {
-                    dgvpersonas.Rows.Add(dr[0].ToString(), dr[1], dr[2], dr[3], dr[4], dr[5], dr[6]);
+                    dgvpersonas.Rows.Add(dr[0].ToString(), dr[1], dr[2], dr[3], Convert.ToDateTime(dr[4]).ToShortDateString(), dr[5], dr[6]);
                 }
             }
             else lblInformacion.Text = "No hay personas cargadas en el sistema";
