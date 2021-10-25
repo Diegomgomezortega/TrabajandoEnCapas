@@ -33,9 +33,21 @@ namespace Presentacion
             dgvpersonas.Columns[5].Width = 100;
             dgvpersonas.Columns[6].Width = 200;
             LlenarDGV();
+            string[] Carreras= new string[9];
+            Carreras[0] = "Administración y Gestión Publica";
+            Carreras[1] = "Desarrollo de Software";
+            Carreras[2] = "Enfermería";
+            Carreras[3] = "Gestión ambiental";
+            Carreras[4] = "Gestion y Administracion de las Organizaciones";
+            Carreras[5] = "Gestion y Mantenimiento Industrial";
+            Carreras[6] = "Optica y Contactologia";
+            Carreras[7] = "Protesis Dental";
+            Carreras[8] = "Seguridad e Higiene Laboral";
             btnBorrar.Visible = false;
             btnModficar.Visible = false;
+            cbxCarrera.DataSource = Carreras;
         }
+        
         bool confirmar;
         public Alumno entAlum = new Alumno();
         public NegProfesionales objNegAlum = new NegProfesionales();//Instancia de negocios Profesionales, es un objeto
@@ -44,12 +56,12 @@ namespace Presentacion
         {
             dgvpersonas.Rows.Clear();//vacia el DGV
             DataSet ds = new DataSet();
-            ds = objNegAlum.listadoAlumnos("Todos");//Data set devuelve una lista, en este caso de docentes cargados, como el argumento es "Todos", me devolvera todos las personas cargadas
+            ds = objNegAlum.listadoAlumnos("Todos");//Data set devuelve una lista, en este caso de alumnos cargados, como el argumento es "Todos", me devolvera todos las personas cargadas
             if (ds.Tables[0].Rows.Count > 0)
             {
                 foreach (DataRow dr in ds.Tables[0].Rows)//Lo que muestra esta en dr[0].ToString(), dr[1].ToString(),y asi sucesivamente
                 {
-                    dgvpersonas.Rows.Add(dr[0].ToString(), dr[1], dr[2], dr[3], dr[4], Convert.ToDateTime(dr[5]).ToShortDateString(), dr[6]);
+                    dgvpersonas.Rows.Add(dr[0].ToString(), dr[1], dr[2], dr[3], dr[4],Convert.ToDateTime(dr[5]).ToShortDateString(), dr[6]);// 
                 }
             }
             else lblInformacion.Text = "No hay personas cargadas en el sistema";
@@ -73,7 +85,7 @@ namespace Presentacion
                 genero = 'x';
             }
             entAlum.Sexo = genero;
-            DateTime dt = this.dtpFecNac.Value.Date;
+            DateTime dt = this.dtpFecNacAlumno.Value.Date;
 
             entAlum.FechNac = dt;
                 //objEntDoc.CodProf = Convert.ToInt32(txtCodigo.Text);
@@ -235,6 +247,11 @@ namespace Presentacion
             {
                 lblInformacion.Text = ("Se produjo un error al intentar modificar los datos");
             }
+        }
+
+        private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
         }
     }
     }

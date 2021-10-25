@@ -120,9 +120,9 @@ namespace Presentacion
             this.dgvpersonas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvpersonas.DefaultCellStyle = dataGridViewCellStyle2;
@@ -166,6 +166,7 @@ namespace Presentacion
             // 
             // dtpFecNac
             // 
+            this.dtpFecNac.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFecNac.Location = new System.Drawing.Point(819, 38);
             this.dtpFecNac.Name = "dtpFecNac";
             this.dtpFecNac.Size = new System.Drawing.Size(229, 23);
@@ -383,6 +384,7 @@ namespace Presentacion
             this.Controls.Add(this.btnNuevo);
             this.Name = "FormAdmDocentes";
             this.Text = "Gestion Instituto";
+            this.Load += new System.EventHandler(this.FormAdmDocentes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvpersonas)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

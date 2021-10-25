@@ -19,7 +19,7 @@ namespace Datos
                int resultado = -1;
                string orden = string.Empty;
                if (accion == "Alta")
-                   orden = "insert into Alumno values (" + objalumno.Dni + ",'" + objalumno.Nombre + "','" + objalumno.Apellido + "','" + objalumno.Carrera + "','" + objalumno.Sexo + "',"+objalumno.FechNac.Year+"/"+objalumno.FechNac.Date.Month+"/"+objalumno.FechNac.Date.Day + ");";
+                   orden = "insert into Alumno values (" + objalumno.Dni + ",'" + objalumno.Nombre + "','" + objalumno.Apellido + "','" + objalumno.Carrera + "','" + objalumno.Sexo + "'," + objalumno.FechNac.Date.Day + "/" +objalumno.FechNac.Date.Month+"/" + objalumno.FechNac.Year+ ");";
             if (accion == "Modificar")
                    orden = "update Alumno set DNI=" + objalumno.Dni + " ,Nombre ='" + objalumno.Nombre + "',Apellido='" + objalumno.Apellido + "',Carrera='" + objalumno.Carrera + "',Genero='" + objalumno.Sexo + "',FechaNac=" +objalumno.FechNac.Year+" / "+objalumno.FechNac.Date.Month+" / "+objalumno.FechNac.Date.Day + "  where Legajo=" + objalumno.Legajo + " ";
                //UPDATE nombre_tabla SET columna1 = valor1, columna2 = valor2 WHERE columna3 = valor3

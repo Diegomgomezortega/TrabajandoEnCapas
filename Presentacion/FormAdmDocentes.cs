@@ -39,7 +39,18 @@ namespace Presentacion
             año[0] = "1";
             año[1] = "2";
             año[2] = "3";
+            string[] Carreras = new string[9];
             cbxAño.DataSource = año;
+            Carreras[0] = "Administración y Gestión Publica";
+            Carreras[1] = "Desarrollo de Software";
+            Carreras[2] = "Enfermería";
+            Carreras[3] = "Gestión ambiental";
+            Carreras[4] = "Gestion y Administracion de las Organizaciones";
+            Carreras[5] = "Gestion y Mantenimiento Industrial";
+            Carreras[6] = "Optica y Contactologia";
+            Carreras[7] = "Protesis Dental";
+            Carreras[8] = "Seguridad e Higiene Laboral";
+
 
         }
 
@@ -281,7 +292,8 @@ namespace Presentacion
 
         }
 
-        private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)//Validar ingreso solo numeros
+
         {
             if (Char.IsDigit(e.KeyChar))
             {
@@ -298,7 +310,7 @@ namespace Presentacion
             }
         }
 
-        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)//Validar ingreso sin numeros
         {
             if (Char.IsLetter(e.KeyChar))
             {
@@ -318,7 +330,7 @@ namespace Presentacion
             }
         }
 
-        private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)//Validar ingreso sin numeros
         {
             if (Char.IsLetter(e.KeyChar))
             {
@@ -341,6 +353,11 @@ namespace Presentacion
         private void btnInicio_Click(object sender, EventArgs e)
         {
             this.Close();
+
+        }
+
+        private void FormAdmDocentes_Load(object sender, EventArgs e)
+        {
 
         }
     }
