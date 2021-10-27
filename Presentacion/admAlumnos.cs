@@ -61,8 +61,21 @@ namespace Presentacion
             {
                 foreach (DataRow dr in ds.Tables[0].Rows)//Lo que muestra esta en dr[0].ToString(), dr[1].ToString(),y asi sucesivamente
                 {
-                    dgvpersonas.Rows.Add(dr[0].ToString(), dr[1], dr[2], dr[3], dr[4],Convert.ToDateTime(dr[5]).ToShortDateString(), dr[6]);// 
-                    //dgvpersonas.Rows.Add(dr[0].ToString(), dr[1], dr[2], dr[3], dr[4],(dr[5]), dr[6]);// 
+                    if (Convert.ToString(dr[4])== "m")
+                    {
+                        dr[4] = "Masculino";
+                    }
+                    if (Convert.ToString(dr[4]) == "f")
+                    {
+                        dr[4] = "Femenino";
+                    }
+                    if (Convert.ToString(dr[4]) == "x")
+                    {
+                        dr[4] = "Indefinido";
+                    }
+                    dgvpersonas.Rows.Add(dr[0].ToString(), dr[1], dr[2], dr[3], dr[4].ToString(),Convert.ToDateTime(dr[5]).ToShortDateString(), dr[6]);//
+                    
+
                 }
             }
             else lblInformacion.Text = "No hay personas cargadas en el sistema";
@@ -115,16 +128,7 @@ namespace Presentacion
             
         }
         
-        private void btnVolver_Click(object sender, EventArgs e)
-        {
-            Limpiar();
-            groupBox1.Visible = false;
-            btnNuevo.Visible = true;
-            btnVolver.Visible = false;
-            btnModficar.Visible = false;
-            btnBorrar.Visible = false;
-
-        }
+        
 
         private void btnInicio_Click(object sender, EventArgs e)
         {
@@ -248,10 +252,76 @@ namespace Presentacion
             {
                 lblInformacion.Text = ("Se produjo un error al intentar modificar los datos");
             }
+            btnNuevo.Visible = true;
         }
 
         private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+
+        }
+
+        private void btnVolver_Click_1(object sender, EventArgs e)
+        {
+
+            Limpiar();
+            groupBox1.Visible = false;
+            btnNuevo.Visible = true;
+            btnVolver.Visible = false;
+            btnModficar.Visible = false;
+            btnBorrar.Visible = false;
 
         }
     }

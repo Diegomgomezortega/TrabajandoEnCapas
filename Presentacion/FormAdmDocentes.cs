@@ -76,6 +76,18 @@ namespace Presentacion
             {
                 foreach (DataRow dr in ds.Tables[0].Rows)//Lo que muestra esta en dr[0].ToString(), dr[1].ToString(),y asi sucesivamente
                 {
+                    if (Convert.ToString(dr[3]) == "M")
+                    {
+                        dr[3] = "Masculino";
+                    }
+                    if (Convert.ToString(dr[3]) == "F")
+                    {
+                        dr[3] = "Femenino";
+                    }
+                    if (Convert.ToString(dr[3]) == "X")
+                    {
+                        dr[3] = "Indefinido";
+                    }
                     dgvpersonas.Rows.Add(dr[0].ToString(), dr[1], dr[2], dr[3], Convert.ToDateTime(dr[4]).ToShortDateString(), dr[5], dr[6]);
                 }
             }

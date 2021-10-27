@@ -21,7 +21,7 @@ namespace Datos
             if (accion == "Alta")
                 orden = "insert into Docentes1 values (" + objDocente.Dni + ",'" + objDocente.Nombre + "','" + objDocente.Apellido + "','" + objDocente.Sexo + "','" + objDocente.FechNac + "','" + objDocente.Materia + "')";
             if (accion == "Modificar")
-                orden = "update Docentes1 set DNI=" + objDocente.Dni + " ,Nombre ='"+ objDocente.Nombre + "',Materia='" + objDocente.Materia + "',Genero='" + objDocente.Sexo + "',FechaNacimiento='" + objDocente.FechNac + "' where CodProf=" + objDocente.CodProf + " ";
+                orden = "update Docentes1 set DNI=" + objDocente.Dni + " ,Nombre ='"+ objDocente.Nombre + "',Apellido='"+objDocente.Apellido+"',Materia='" + objDocente.Materia + "',Genero='" + objDocente.Sexo + "',FechaNacimiento='" + objDocente.FechNac + "' where CodProf=" + objDocente.CodProf + " ";
             //UPDATE nombre_tabla SET columna1 = valor1, columna2 = valor2 WHERE columna3 = valor3
             if (accion == "Borrar")
                 orden = "delete from Docentes1  where CodProf=" + objDocente.CodProf + "";
