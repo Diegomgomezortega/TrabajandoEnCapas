@@ -19,12 +19,15 @@ namespace Datos
                int resultado = -1;
                string orden = string.Empty;
                if (accion == "Alta")
-                   orden = "insert into Alumno values (" + objalumno.Dni + ",'" + objalumno.Nombre + "','" + objalumno.Apellido + "','" + objalumno.Carrera + "','" + objalumno.Sexo + "'," + objalumno.FechNac.Date.Day + "/" +objalumno.FechNac.Date.Month+"/" + objalumno.FechNac.Year+ ");";
+                   //orden = "insert into Alumno values (" + objalumno.Dni + ",'" + objalumno.Nombre + "','" + objalumno.Apellido + "','" + objalumno.Carrera + "','" + objalumno.Sexo + "'," + objalumno.FechNac.Date.Day + "/" +objalumno.FechNac.Date.Month+"/" + objalumno.FechNac.Year+ ");";
+            //orden = "insert into Alumno values (" + objalumno.Dni + ",'" + objalumno.Nombre + "','" + objalumno.Apellido + "','" + objalumno.Carrera + "','" + objalumno.Sexo + "'," + objalumno.FechNac.Year +" / " + objalumno.FechNac.Date.Month + "/ " + objalumno.FechNac.Date.Day + ");";//Me guarda con e año 1900
+            //orden = "insert into Alumnos values (" + objalumno.Dni + ",'" + objalumno.Nombre + "','" + objalumno.Apellido + "','" + objalumno.Carrera + "','" + objalumno.Sexo + "'," + objalumno.FechNac.Year + "/" + objalumno.FechNac.Date.Month + "/" + objalumno.FechNac.Date.Day + ");";//Me guarda con e año 1900
+            orden = "insert into Alumnos values (" + objalumno.Dni + ",'" + objalumno.Nombre + "','" + objalumno.Apellido + "','" + objalumno.Carrera + "','" + objalumno.Sexo + "','"+ objalumno.FechNac.Year + "/" + objalumno.FechNac.Date.Month +"/"+ objalumno.FechNac.Date.Day+"');";
             if (accion == "Modificar")
-                   orden = "update Alumno set DNI=" + objalumno.Dni + " ,Nombre ='" + objalumno.Nombre + "',Apellido='" + objalumno.Apellido + "',Carrera='" + objalumno.Carrera + "',Genero='" + objalumno.Sexo + "',FechaNac=" +objalumno.FechNac.Year+" / "+objalumno.FechNac.Date.Month+" / "+objalumno.FechNac.Date.Day + "  where Legajo=" + objalumno.Legajo + " ";
+                   orden = "update Alumnos set DNI=" + objalumno.Dni + " ,Nombre ='" + objalumno.Nombre + "',Apellido='" + objalumno.Apellido + "',Carrera='" + objalumno.Carrera + "',Genero='" + objalumno.Sexo + "',FechaNac=" +objalumno.FechNac.Year+" / "+objalumno.FechNac.Date.Month+" / "+objalumno.FechNac.Date.Day + "  where Legajo=" + objalumno.Legajo + " ";
                //UPDATE nombre_tabla SET columna1 = valor1, columna2 = valor2 WHERE columna3 = valor3
                if (accion == "Borrar")
-                   orden = "delete from Alumno  where Legajo=" + objalumno.Legajo + "";
+                   orden = "delete from Alumnos  where Legajo=" + objalumno.Legajo + "";
                //DELETE FROM nombre_tabla WHERE nombre_columna = valor
                SqlCommand cmd = new SqlCommand(orden, conexion);
                {
@@ -50,9 +53,9 @@ namespace Datos
            {
                string orden = string.Empty;
                if (cual != "Todos")
-                   orden = "select * from Alumno where Legajo = " + int.Parse(cual) + ";";
+                   orden = "select * from Alumnos where Legajo = " + int.Parse(cual) + ";";
                else
-                   orden = "select * from Alumno;";
+                   orden = "select * from Alumnos;";
                SqlCommand cmd = new SqlCommand(orden, conexion);
                DataSet ds = new DataSet();
                SqlDataAdapter da = new SqlDataAdapter();
