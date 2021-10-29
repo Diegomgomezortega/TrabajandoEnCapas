@@ -24,7 +24,7 @@ namespace Datos
             //orden = "insert into Alumnos values (" + objalumno.Dni + ",'" + objalumno.Nombre + "','" + objalumno.Apellido + "','" + objalumno.Carrera + "','" + objalumno.Sexo + "'," + objalumno.FechNac.Year + "/" + objalumno.FechNac.Date.Month + "/" + objalumno.FechNac.Date.Day + ");";//Me guarda con e año 1900
             orden = "insert into Alumnos values (" + objalumno.Dni + ",'" + objalumno.Nombre + "','" + objalumno.Apellido + "','" + objalumno.Carrera + "','" + objalumno.Sexo + "','"+ objalumno.FechNac.Year + "/" + objalumno.FechNac.Date.Month +"/"+ objalumno.FechNac.Date.Day+"');";
             if (accion == "Modificar")
-                   orden = "update Alumnos set DNI=" + objalumno.Dni + " ,Nombre ='" + objalumno.Nombre + "',Apellido='" + objalumno.Apellido + "',Carrera='" + objalumno.Carrera + "',Genero='" + objalumno.Sexo + "',FechaNac=" +objalumno.FechNac.Year+" / "+objalumno.FechNac.Date.Month+" / "+objalumno.FechNac.Date.Day + "  where Legajo=" + objalumno.Legajo + " ";
+                   orden = "update Alumnos set DNI=" + objalumno.Dni + " ,Nombre ='" + objalumno.Nombre + "',Apellido='" + objalumno.Apellido + "',Carrera='" + objalumno.Carrera + "',Genero='" + objalumno.Sexo + "',FechaNac='" +objalumno.FechNac.Year+"/"+objalumno.FechNac.Date.Month+"/"+objalumno.FechNac.Date.Day + "'  where Legajo=" + objalumno.Legajo + " ";
                //UPDATE nombre_tabla SET columna1 = valor1, columna2 = valor2 WHERE columna3 = valor3
                if (accion == "Borrar")
                    orden = "delete from Alumnos  where Legajo=" + objalumno.Legajo + "";
@@ -38,7 +38,11 @@ namespace Datos
                    }
                    catch (Exception e)
                    {
+                    
+                    
                        throw new Exception("Error al tratar de guardar,borrar o modificar estudiantes", e);
+                     
+                    
                    }
                    finally
                    {

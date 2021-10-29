@@ -17,6 +17,7 @@ namespace Presentacion
         public admAlumnos()
         {
             InitializeComponent();
+            //Doy formato al datagridview de Alumnos
             dgvpersonas.ColumnCount = 7;
             dgvpersonas.Columns[0].HeaderText = "DNI";
             dgvpersonas.Columns[1].HeaderText = "NOMBRE";
@@ -46,12 +47,16 @@ namespace Presentacion
             btnBorrar.Visible = false;
             btnModficar.Visible = false;
             cbxCarrera.DataSource = Carreras;
+            cbxCarrera.DropDownStyle = ComboBoxStyle.DropDownList;//Hacer solo lectura el combobox
+
         }
         
         bool confirmar;
         public Alumno entAlum = new Alumno();
         public NegProfesionales objNegAlum = new NegProfesionales();//Instancia de negocios Profesionales, es un objeto
-        private void LlenarDGV()
+
+        #region Metodos
+        private void LlenarDGV()//Trae los datos de la base de datos y los ubica en el dgv
 
         {
             dgvpersonas.Rows.Clear();//vacia el DGV
@@ -73,7 +78,7 @@ namespace Presentacion
                     {
                         dr[4] = "Indefinido";
                     }
-                    dgvpersonas.Rows.Add(dr[0].ToString(), dr[1], dr[2], dr[3], dr[4].ToString(),Convert.ToDateTime(dr[5]).ToShortDateString(), dr[6]);//
+                    dgvpersonas.Rows.Add(dr[0].ToString(), dr[1], dr[2], dr[3], dr[4].ToString(),Convert.ToDateTime(dr[5]).ToShortDateString(), dr[6]);//Rellena el dgv por cada ds que trae de la bd
                     
 
                 }
@@ -82,28 +87,37 @@ namespace Presentacion
         }
         private void Txtbox_a_obj()//metodo para tomar los datos del formulario/text box y colocar los atributos a la instacia de la clase, Toma los datos de ls txbox y utiliza las propiedades de la clase docente
         {
-            entAlum.Dni = System.Convert.ToInt32(txtDNI.Text);
-            entAlum.Nombre = txtNombre.Text;
-            entAlum.Apellido = txtApellido.Text;
-            char genero = new char();
-            if (rbMasculino.Checked)
+            try
             {
-                genero = 'm';
-            }
-            else if (rdFemenino.Checked)
-            {
-                genero = 'f';
-            }
-            else if (rdX.Checked)
-            {
-                genero = 'x';
-            }
-            entAlum.Sexo = genero;
-            DateTime dt = this.dtpFecNacAlumno.Value.Date;
+                entAlum.Dni = System.Convert.ToInt32(txtDNI.Text);
+                entAlum.Nombre = txtNombre.Text;
+                entAlum.Apellido = txtApellido.Text;
+                char genero = new char();
+                if (rbMasculino.Checked)
+                {
+                    genero = 'm';
+                }
+                else if (rdFemenino.Checked)
+                {
+                    genero = 'f';
+                }
+                else if (rdX.Checked)
+                {
+                    genero = 'x';
+                }
+                entAlum.Sexo = genero;
+                DateTime dt = this.dtpFecNacAlumno.Value.Date;
 
-            entAlum.FechNac = dt;
+                entAlum.FechNac = dt;
                 //objEntDoc.CodProf = Convert.ToInt32(txtCodigo.Text);
-            entAlum.Carrera = cbxCarrera.SelectedItem.ToString();
+                entAlum.Carrera = cbxCarrera.SelectedItem.ToString();
+
+            }
+            catch
+            {
+                MessageBox.Show("Por favor, ingrese todos los datos obligatorios");
+            }
+            
 
 
         }
@@ -114,10 +128,11 @@ namespace Presentacion
             txtDNI.Text = string.Empty;
             txtNombre.Text = string.Empty;
             txtApellido.Text = string.Empty;
+            dtpFecNacAlumno.Value = DateTime.Today;
             //txtCodigo.Text = string.Empty;
             cbxCarrera.Text = "Elija una carrera";
             
-        }
+        }//Limpia y vacia los textbox
         
         private void Ds_a_TxtBox(DataSet ds)
         {
@@ -126,14 +141,17 @@ namespace Presentacion
             txtApellido.Text = ds.Tables[0].Rows[0]["APELLIDO"].ToString();
             cbxCarrera.SelectedItem = ds.Tables[0].Rows[0]["CARRERA"].ToString();
             
-        }
-        
-        
+            
+        }//pasa los datos del data set triados de la bd a los textos box del formulario
+
+        #endregion
+
+        #region Eventos Click & Key Press
 
         private void btnInicio_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
+        }//me lleva al formulario inicio
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
@@ -144,7 +162,7 @@ namespace Presentacion
             btnModficar.Visible = false;
             btnBorrar.Visible = false;
 
-        }
+        }//Evento que desencadena el click en el boton "nuevo"
 
         private void btnConfirmar_Click_1(object sender, EventArgs e)
         {
@@ -191,8 +209,10 @@ namespace Presentacion
                     lblInformacion.Text = ("Se produjo un error al intentar modificar los datos");
                 }
             }
+            groupBox1.Visible = false;
+            btnNuevo.Visible = true;
 
-        }
+        }//Evento que desencadena el click en el boton "Confirmar"
 
         private void dgvpersonas_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
@@ -222,7 +242,7 @@ namespace Presentacion
             Limpiar();
             groupBox1.Visible = false;
             btnNuevo.Visible = true;
-        }
+        }//Evento que desencadena el click en el boton "Cancelar"
 
         private void btnModficar_Click_1(object sender, EventArgs e)
         {
@@ -232,7 +252,7 @@ namespace Presentacion
             btnModficar.Visible = false;
             btnBorrar.Visible = false;
 
-        }
+        }//Evento que desencadena el click en el boton "Modificar"
 
         private void btnBorrar_Click_1(object sender, EventArgs e)
         {
@@ -246,6 +266,10 @@ namespace Presentacion
                 lblInformacion.Text = "Los datos fueron modificados con éxito";
                 Limpiar();
                 LlenarDGV();
+                groupBox1.Visible = false;
+                btnBorrar.Visible = false;
+                btnModficar.Visible = false;
+                btnNuevo.Visible = true;
                 //txtCodigo.Enabled = true;
             }
             else
@@ -253,65 +277,99 @@ namespace Presentacion
                 lblInformacion.Text = ("Se produjo un error al intentar modificar los datos");
             }
             btnNuevo.Visible = true;
-        }
+            groupBox1.Visible = false;
+        }//Evento que desencadena el click en el boton "Borrar"
 
-        private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)//Solo acepta numeros
         {
-            if (Char.IsDigit(e.KeyChar))
+            if (txtDNI.Text.Length <= 7)
             {
-                e.Handled = false;
-            }
-            else if (Char.IsControl(e.KeyChar))
-            {
-                e.Handled = false;
-            }
+                if (Char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else if (Char.IsControl(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
 
-            else
-            {
-                e.Handled = true;
-            }
-        }
+                else
+                {
+                    e.Handled = true;
 
-        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (Char.IsLetter(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-            else if (Char.IsControl(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-            else if (Char.IsSeparator(e.KeyChar))
-            {
-                e.Handled = false;
+
+                }
             }
             else
             {
-                e.Handled = true;
-            }
-        }
 
-        private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)
+                MessageBox.Show("Solo 8 digitos disponibles");
+                txtDNI.Text = string.Empty;
+            }
+        }//Evento que desencadena cuando presiono una tecla en el textbox
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)//Solo acepta letras
         {
-            if (Char.IsLetter(e.KeyChar))
+            if (txtNombre.Text.Length <= 49)
             {
-                e.Handled = false;
-            }
-            else if (Char.IsControl(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-            else if (Char.IsSeparator(e.KeyChar))
-            {
-                e.Handled = false;
+
+                if (Char.IsLetter(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else if (Char.IsControl(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else if (Char.IsSeparator(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
+
             }
             else
             {
-                e.Handled = true;
+
+                MessageBox.Show("Solo 50 caracteres disponibles");
+                txtNombre.Text = string.Empty;
+            }
+        }//Evento que desencadena cuando presiono una tecla en el textbox
+
+        private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)//Solo acepta letras
+        {
+            if (txtNombre.Text.Length <= 49)
+            {
+
+                if (Char.IsLetter(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else if (Char.IsControl(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else if (Char.IsSeparator(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
+
+            }
+            else
+            {
+
+                MessageBox.Show("Solo 50 caracteres disponibles");
+                txtNombre.Text = string.Empty;
             }
 
-        }
+        }//Evento que desencadena cuando presiono una tecla en el textbox
 
         private void btnVolver_Click_1(object sender, EventArgs e)
         {
@@ -324,6 +382,7 @@ namespace Presentacion
             btnBorrar.Visible = false;
 
         }
+        #endregion
     }
-    }
+}
 

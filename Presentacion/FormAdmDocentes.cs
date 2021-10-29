@@ -17,6 +17,7 @@ namespace Presentacion
         public FormAdmDocentes()
         {
             InitializeComponent();
+            #region Formato DGV
             dgvpersonas.ColumnCount = 7;
             dgvpersonas.Columns[0].HeaderText = "DNI";
             dgvpersonas.Columns[1].HeaderText = "NOMBRE";
@@ -32,6 +33,7 @@ namespace Presentacion
             dgvpersonas.Columns[4].Width = 200;
             dgvpersonas.Columns[5].Width = 100;
             dgvpersonas.Columns[6].Width = 200;
+            #endregion
             LlenarDGV();
             btnBorrar.Visible = false;
             btnModficar.Visible = false;
@@ -50,6 +52,8 @@ namespace Presentacion
             Carreras[6] = "Optica y Contactologia";
             Carreras[7] = "Protesis Dental";
             Carreras[8] = "Seguridad e Higiene Laboral";
+            cbxMateria.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxAño.DropDownStyle = ComboBoxStyle.DropDownList;
 
 
         }
@@ -66,6 +70,8 @@ namespace Presentacion
         public Docente objEntDoc = new Docente();//Instancia de Docente, es un objeto
 
         public NegProfesionales objNegDoc = new NegProfesionales();//Instancia de negocios Profesionales, es un objeto
+
+        #region Métodos
         private void LlenarDGV()
 
         {
@@ -88,14 +94,14 @@ namespace Presentacion
                     {
                         dr[3] = "Indefinido";
                     }
-                    dgvpersonas.Rows.Add(dr[0].ToString(), dr[1], dr[2], dr[3], Convert.ToDateTime(dr[4]).ToShortDateString(), dr[5], dr[6]);
+                    dgvpersonas.Rows.Add(dr[0].ToString(), dr[1], dr[2], dr[3], Convert.ToDateTime(dr[4]).ToShortDateString(), dr[5], dr[6]);////Rellena el dgv por cada ds que trae de la bd
                 }
             }
             else lblInformacion.Text = "No hay personas cargadas en el sistema";
-        }
+        }//Metodo para llenar el dgv con datos de la bd
         private void Txtbox_a_obj()//metodo para tomar los datos del formulario/text box y colocar los atributos a la instacia de la clase, Toma los datos de ls txbox y utiliza las propiedades de la clase docente
         {
-            objEntDoc.Dni = System.Convert.ToInt32(txtDNI.Text);
+            objEntDoc.Dni = System.Convert.ToInt32(textBoxDocumento.Text);
             objEntDoc.Nombre = txtNombre.Text;
             objEntDoc.Apellido = txtApellido.Text;
             char Genero = new char();
@@ -129,11 +135,11 @@ namespace Presentacion
 
 
 
-        }
-        private void Limpiar()
+        }//Evento que desencadena el click en el boton "Nuevo"
+        private void Limpiar()//Limpia y vacia los textbox.
         {
             btnVolver.Visible = false;
-            txtDNI.Text = string.Empty;
+            textBoxDocumento.Text = string.Empty;
             txtNombre.Text = string.Empty;
             txtApellido.Text = string.Empty;
             //txtCodigo.Text = string.Empty;
@@ -164,13 +170,14 @@ namespace Presentacion
         }//Para modificar los datos haciendo click en la celda del dgv
         private void Ds_a_TxtBox(DataSet ds)
         {
-            txtDNI.Text = ds.Tables[0].Rows[0]["DNI"].ToString();
+            textBoxDocumento.Text = ds.Tables[0].Rows[0]["DNI"].ToString();
             txtNombre.Text = ds.Tables[0].Rows[0]["NOMBRE"].ToString();
             txtApellido.Text = ds.Tables[0].Rows[0]["APELLIDO"].ToString();
             cbxMateria.SelectedItem = ds.Tables[0].Rows[0]["MATERIA"].ToString();
 
         }
-
+        #endregion
+        #region Eventos Click & Key Press
         private void btnModficar_Click(object sender, EventArgs e)
         {
             confirmar = false;
@@ -178,7 +185,7 @@ namespace Presentacion
             btnModficar.Visible = false;
             btnBorrar.Visible = false;
 
-        }
+        }//Evento que desencadena el click en el boton "Modificar"
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
@@ -192,6 +199,10 @@ namespace Presentacion
                 lblInformacion.Text = "Los datos fueron modificados con éxito";
                 Limpiar();
                 LlenarDGV();
+                groupBox1.Visible = false;
+                btnBorrar.Visible = false;
+                btnModficar.Visible = false;
+                btnNuevo.Visible = true;
                 //txtCodigo.Enabled = true;
             }
             else
@@ -199,7 +210,7 @@ namespace Presentacion
                 lblInformacion.Text = ("Se produjo un error al intentar modificar los datos");
             }
 
-        }
+        }//Evento que desencadena el click en el boton "Borrar"
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
@@ -246,15 +257,17 @@ namespace Presentacion
                     lblInformacion.Text = ("Se produjo un error al intentar modificar los datos");
                 }
             }
+            Limpiar();
+            groupBox1.Visible = false;
 
-        }
+        }//Evento que desencadena el click en el boton "Confirmar"
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Limpiar();
             groupBox1.Visible = false;
             btnNuevo.Visible = true;
-        }
+        }//Evento que desencadena el click en el boton "cancelar"
 
         private void cbxAño_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -291,7 +304,7 @@ namespace Presentacion
                 materias3[6] = "Practica Profesionaizante II";
                 cbxMateria.DataSource = materias3;
             }
-        }
+        }//Evento que se desencadena cuando cambio la seleccion del combobox año
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
@@ -302,67 +315,73 @@ namespace Presentacion
             btnModficar.Visible = false;
             btnBorrar.Visible = false;
 
-        }
+        }//Evento que desencadena el click en el boton "Volver"
 
-        private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)//Validar ingreso solo numeros
 
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)//Validar ingreso solo letras
         {
-            if (Char.IsDigit(e.KeyChar))
+            if (txtNombre.Text.Length <= 49)
             {
-                e.Handled = false;
-            }
-            else if (Char.IsControl(e.KeyChar))
-            {
-                e.Handled = false;
-            }
 
-            else
-            {
-                e.Handled = true;
-            }
-        }
+                if (Char.IsLetter(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else if (Char.IsControl(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else if (Char.IsSeparator(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
 
-        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)//Validar ingreso sin numeros
-        {
-            if (Char.IsLetter(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-            else if (Char.IsControl(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-            else if (Char.IsSeparator(e.KeyChar))
-            {
-                e.Handled = false;
             }
             else
             {
-                e.Handled = true;
+
+                MessageBox.Show("Solo 50 caracteres disponibles");
+                txtNombre.Text = string.Empty;
             }
         }
 
-        private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)//Validar ingreso sin numeros
+        private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)//Validar ingreso solo letras
         {
-            if (Char.IsLetter(e.KeyChar))
+            if (txtNombre.Text.Length <= 49)
             {
-                e.Handled = false;
-            }
-            else if (Char.IsControl(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-            else if (Char.IsSeparator(e.KeyChar))
-            {
-                e.Handled = false;
+
+                if (Char.IsLetter(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else if (Char.IsControl(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else if (Char.IsSeparator(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
+
             }
             else
             {
-                e.Handled = true;
+
+                MessageBox.Show("Solo 50 caracteres disponibles");
+                txtNombre.Text = string.Empty;
             }
         }
 
-        private void btnInicio_Click(object sender, EventArgs e)
+        private void btnInicio_Click(object sender, EventArgs e)//Para volver al Inicio, eleccion de formularios estudiantes o docentes
         {
             this.Close();
 
@@ -372,5 +391,39 @@ namespace Presentacion
         {
 
         }
+
+
+       
+
+        private void textBoxDocumento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (textBoxDocumento.Text.Length <= 7)
+            {
+                if (Char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else if (Char.IsControl(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+
+                else
+                {
+                    e.Handled = true;
+                    
+
+                }
+            }
+            else
+            {
+                
+                MessageBox.Show("Solo 8 digitos disponibles");
+                textBoxDocumento.Text = string.Empty;
+            }
+            
+
+        }//Validar solo numeros, 8 digitos
+        #endregion
     }
 }

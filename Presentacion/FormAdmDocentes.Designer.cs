@@ -43,7 +43,6 @@ namespace Presentacion
             this.dtpFecNac = new System.Windows.Forms.DateTimePicker();
             this.btnBorrar = new System.Windows.Forms.Button();
             this.lblDNI = new System.Windows.Forms.Label();
-            this.txtDNI = new System.Windows.Forms.TextBox();
             this.lblApellido = new System.Windows.Forms.Label();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.rbMasculino = new System.Windows.Forms.RadioButton();
@@ -51,6 +50,7 @@ namespace Presentacion
             this.rdX = new System.Windows.Forms.RadioButton();
             this.cbxMateria = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBoxDocumento = new System.Windows.Forms.TextBox();
             this.cbxAño = new System.Windows.Forms.ComboBox();
             this.lblAño = new System.Windows.Forms.Label();
             this.btnConfirmar = new System.Windows.Forms.Button();
@@ -67,7 +67,7 @@ namespace Presentacion
             this.txtNombre.Location = new System.Drawing.Point(211, 38);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(170, 23);
-            this.txtNombre.TabIndex = 19;
+            this.txtNombre.TabIndex = 2;
             this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             // 
             // lblNombre
@@ -192,14 +192,6 @@ namespace Presentacion
             this.lblDNI.TabIndex = 17;
             this.lblDNI.Text = "DNI";
             // 
-            // txtDNI
-            // 
-            this.txtDNI.Location = new System.Drawing.Point(45, 38);
-            this.txtDNI.Name = "txtDNI";
-            this.txtDNI.Size = new System.Drawing.Size(100, 23);
-            this.txtDNI.TabIndex = 18;
-            this.txtDNI.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDNI_KeyPress);
-            // 
             // lblApellido
             // 
             this.lblApellido.AutoSize = true;
@@ -214,7 +206,7 @@ namespace Presentacion
             this.txtApellido.Location = new System.Drawing.Point(453, 38);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(229, 23);
-            this.txtApellido.TabIndex = 20;
+            this.txtApellido.TabIndex = 3;
             this.txtApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellido_KeyPress);
             // 
             // rbMasculino
@@ -263,23 +255,22 @@ namespace Presentacion
             this.cbxMateria.Location = new System.Drawing.Point(819, 83);
             this.cbxMateria.Name = "cbxMateria";
             this.cbxMateria.Size = new System.Drawing.Size(229, 23);
-            this.cbxMateria.TabIndex = 26;
+            this.cbxMateria.TabIndex = 5;
             this.cbxMateria.Text = "Elija una materia";
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBoxDocumento);
             this.groupBox1.Controls.Add(this.cbxAño);
             this.groupBox1.Controls.Add(this.lblAño);
             this.groupBox1.Controls.Add(this.btnConfirmar);
             this.groupBox1.Controls.Add(this.btnCancelar);
             this.groupBox1.Controls.Add(this.cbxMateria);
-            this.groupBox1.Controls.Add(this.lblInformacion);
             this.groupBox1.Controls.Add(this.rdX);
             this.groupBox1.Controls.Add(this.rdFemenino);
             this.groupBox1.Controls.Add(this.rbMasculino);
             this.groupBox1.Controls.Add(this.lblApellido);
             this.groupBox1.Controls.Add(this.txtApellido);
-            this.groupBox1.Controls.Add(this.txtDNI);
             this.groupBox1.Controls.Add(this.lblDNI);
             this.groupBox1.Controls.Add(this.dtpFecNac);
             this.groupBox1.Controls.Add(this.lblGenero);
@@ -289,10 +280,18 @@ namespace Presentacion
             this.groupBox1.Controls.Add(this.txtNombre);
             this.groupBox1.Location = new System.Drawing.Point(22, 135);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1089, 246);
+            this.groupBox1.Size = new System.Drawing.Size(1089, 187);
             this.groupBox1.TabIndex = 25;
             this.groupBox1.TabStop = false;
             this.groupBox1.Visible = false;
+            // 
+            // textBoxDocumento
+            // 
+            this.textBoxDocumento.Location = new System.Drawing.Point(46, 38);
+            this.textBoxDocumento.Name = "textBoxDocumento";
+            this.textBoxDocumento.Size = new System.Drawing.Size(100, 23);
+            this.textBoxDocumento.TabIndex = 1;
+            this.textBoxDocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxDocumento_KeyPress);
             // 
             // cbxAño
             // 
@@ -307,7 +306,7 @@ namespace Presentacion
             this.cbxAño.Location = new System.Drawing.Point(453, 86);
             this.cbxAño.Name = "cbxAño";
             this.cbxAño.Size = new System.Drawing.Size(229, 23);
-            this.cbxAño.TabIndex = 25;
+            this.cbxAño.TabIndex = 4;
             this.cbxAño.Text = "Elija un año";
             this.cbxAño.SelectedIndexChanged += new System.EventHandler(this.cbxAño_SelectedIndexChanged);
             // 
@@ -322,20 +321,20 @@ namespace Presentacion
             // 
             // btnConfirmar
             // 
-            this.btnConfirmar.Location = new System.Drawing.Point(385, 195);
+            this.btnConfirmar.Location = new System.Drawing.Point(364, 137);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(131, 31);
-            this.btnConfirmar.TabIndex = 27;
+            this.btnConfirmar.TabIndex = 6;
             this.btnConfirmar.Text = "Confirmar";
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(522, 195);
+            this.btnCancelar.Location = new System.Drawing.Point(501, 137);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(131, 31);
-            this.btnCancelar.TabIndex = 28;
+            this.btnCancelar.TabIndex = 7;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -343,7 +342,7 @@ namespace Presentacion
             // lblInformacion
             // 
             this.lblInformacion.AutoSize = true;
-            this.lblInformacion.Location = new System.Drawing.Point(479, 165);
+            this.lblInformacion.Location = new System.Drawing.Point(465, 325);
             this.lblInformacion.Name = "lblInformacion";
             this.lblInformacion.Size = new System.Drawing.Size(72, 15);
             this.lblInformacion.TabIndex = 7;
@@ -381,6 +380,7 @@ namespace Presentacion
             this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.dgvpersonas);
             this.Controls.Add(this.btnModficar);
+            this.Controls.Add(this.lblInformacion);
             this.Controls.Add(this.btnNuevo);
             this.Name = "FormAdmDocentes";
             this.Text = "Gestion Instituto";
@@ -389,6 +389,7 @@ namespace Presentacion
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -404,7 +405,6 @@ namespace Presentacion
         private System.Windows.Forms.DateTimePicker dtpFecNac;
         private System.Windows.Forms.Button btnBorrar;
         private System.Windows.Forms.Label lblDNI;
-        private System.Windows.Forms.TextBox txtDNI;
         private System.Windows.Forms.Label lblApellido;
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.RadioButton rbMasculino;
@@ -419,5 +419,6 @@ namespace Presentacion
         private System.Windows.Forms.Label lblInformacion;
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.Button btnInicio;
+        private System.Windows.Forms.TextBox textBoxDocumento;
     }
 }

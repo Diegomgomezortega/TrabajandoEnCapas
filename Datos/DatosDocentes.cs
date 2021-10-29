@@ -19,12 +19,12 @@ namespace Datos
             int resultado = -1;
             string orden = string.Empty;
             if (accion == "Alta")
-                orden = "insert into Docentes1 values (" + objDocente.Dni + ",'" + objDocente.Nombre + "','" + objDocente.Apellido + "','" + objDocente.Sexo + "','" + objDocente.FechNac + "','" + objDocente.Materia + "')";
+                orden = "insert into Docente values (" + objDocente.Dni + ",'" + objDocente.Nombre + "','" + objDocente.Apellido + "','" + objDocente.Sexo + "','" + objDocente.FechNac.Year + "/" + objDocente.FechNac.Date.Month + "/" + objDocente.FechNac.Date.Day + "','" + objDocente.Materia + "')";
             if (accion == "Modificar")
-                orden = "update Docentes1 set DNI=" + objDocente.Dni + " ,Nombre ='"+ objDocente.Nombre + "',Apellido='"+objDocente.Apellido+"',Materia='" + objDocente.Materia + "',Genero='" + objDocente.Sexo + "',FechaNacimiento='" + objDocente.FechNac + "' where CodProf=" + objDocente.CodProf + " ";
+                orden = "update Docente set Dni=" + objDocente.Dni + " ,Nombre ='"+ objDocente.Nombre + "',Apellido='"+objDocente.Apellido+"',Materia='" + objDocente.Materia + "',Genero='" + objDocente.Sexo + "',FechaNacimiento='" + objDocente.FechNac.Year + "/" + objDocente.FechNac.Date.Month + "/" + objDocente.FechNac.Date.Day + "' where CodProf=" + objDocente.CodProf + " ";
             //UPDATE nombre_tabla SET columna1 = valor1, columna2 = valor2 WHERE columna3 = valor3
             if (accion == "Borrar")
-                orden = "delete from Docentes1  where CodProf=" + objDocente.CodProf + "";
+                orden = "delete from Docente  where CodProf=" + objDocente.CodProf + "";
             //DELETE FROM nombre_tabla WHERE nombre_columna = valor
             SqlCommand cmd = new SqlCommand(orden, conexion);
             {
@@ -51,9 +51,9 @@ namespace Datos
         {
             string orden = string.Empty;
             if (cual != "Todos")
-                orden = "select * from Docentes1 where CodProf = " + int.Parse(cual) + ";";
+                orden = "select * from Docente where CodProf = " + int.Parse(cual) + ";";
             else
-                orden = "select * from Docentes1;";
+                orden = "select * from Docente;";
             SqlCommand cmd = new SqlCommand(orden, conexion);
             DataSet ds = new DataSet();
             SqlDataAdapter da = new SqlDataAdapter();
